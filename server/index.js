@@ -1,8 +1,8 @@
-// 这里的node代码。会用babel处理
-import path from 'path'
+// 这里的node代码。会用babel处理 
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import express from 'express' 
+import App from '../src/App'
  
 const app = express()
 app.use(express.static('public'))
