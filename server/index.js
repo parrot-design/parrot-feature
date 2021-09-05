@@ -2,15 +2,20 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import express from 'express' 
+import { StaticRouter } from 'react-router-dom'
 import App from '../src/App'
  
 const app = express()
 app.use(express.static('public'))
 
  
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   // 获取根据路由渲染出的组件，并且拿到loadData方法 获取数据
-  const content=renderToString(App);
+  const content=renderToString(
+    <StaticRouter location={req.url}>
+      {App}
+    </StaticRouter>
+  );
   // 字符串模板
   res.send(`
     <html>
